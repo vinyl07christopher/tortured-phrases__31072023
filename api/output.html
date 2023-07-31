@@ -1,0 +1,205 @@
+
+    <html>
+      <head>
+        <title>Highlighted Text and Word Counts</title>
+      </head>
+      <body>
+        <div style="display:table;">
+          Brain Tumor Recognition from MRI Using Deep Learning with Data Balancing Methods and Its Explainability with AI
+*Abdullah Al Noman1, Abu Shamim Mohammad Arif2
+1,2Computer Science and Engineering Discipline, Khulna University,Khulna, Bangladesh
+1*nomancseku@gmail.com
+2shamimarif@yahoo.com
+
+* Corresponding Author
+Abstract. The abnormal growth of brain cells is a disease that can damage our brains and lead to malignant brain cancer. This abnormal growth in the brain is called a brain tumor. In the past few years, the number of brain tumor-related patients has increased at an extraordinary rate, due to which brain tumor is at the tenth position in the list of common tumors. But if a brain tumor is detected very early, it is possible to increase the way to get rid of this disease. Researchers are working tirelessly to develop automatic systems for brain tumor recognition. Hence this paper proposes an automated system for brain tumor recognition based on deep learning and image processing. The dataset used in this article was collected from Kaggle and was not balanced. The dataset was preprocessed using a High-boost filter, and Non-local means denoising technique, and then augmentation and SMOTE were applied to balance the dataset. Finally, different deep-learning architectures were utilized. Among them, the ResNet50 model achieved 99.62% accuracy for 15-class recognition. The experimental result showed the reliability of the proposed model. This research will enable the research community to explore further brain tumor recognition from MRI using deep learning. It will also help the physician to detect brain tumors earlier.
+Keywords: Deep learning, Brain tumor recognition, MRI, Augmentation, SMOTE, ResNet50, Explainable AI.
+1	Introduction 
+Brain tumors are caused by abnormal growth and proliferation of cells inside the skull. The brain controls all our organs, whereas a brain tumor can seriously affect our body and put our health at risk. Brain tumors are generally of two types one is primary, and the other is secondary. Primary brain tumors originate directly in the brain, and secondary brain tumors occur elsewhere in the body and later spread to the brain. A study found that 85 to 90% of primary brain tumors are CNS (central nervous system) tumors, and a person has less than a one percent chance of developing such a tumor [1]. Radiologists often use MRI images for brain tumor recognition because it provides more detailed images than other methods, such as computer tomography (CT) scans. Radiologists usually perform brain tumor recognition by manual inspection, but this recognition is time-consuming and requires expertise and experience. Also, manual recognition is expensive and may lead to errors in tumor grading [2]. Misinterpretation of brain tumors can cause serious problems and can threaten the patient's survival. Also, if brain tumors are detected quickly and the necessary treatment is given, the patient's chances of survival increase to a great extent [3]. As a result, Automatic brain tumor detection has gained great importance for researchers to overcome this problem.
+In this regard, we have developed a DL-based tumor recognition system using a High-boost filter to enhance the high-frequency components and non-local means denoising techniques to remove noise from data. We have also applied augmentation and SMOTE methods for data balancing. Finally, we have explained why our proposed methodology is much more tractable. The significant contributions of this paper are mentioned below: 
+Classification of fifteen types of brain tumors has been done in this article.
+High-boost filter and NLM denoising techniques have been applied. 
+Augmentation and SMOTE have been applied to balance the dataset.
+Different CNN models have been trained.
+Result analysis and discussion have been provided.
+An explanation of the model's performance using explainable AI has been given. 
+
+The rest of this article is presented as follows: the related work is presented in section 2. Methodology, result analysis, explanation using AI, and the conclusion is detailed in section 3,4,5 and 6, respectively.
+2 	Related Work 
+Different researchers have done different works for brain tumor recognition; this paper will discuss them in this section. Das et al. [4] propose a CNN model to identify brain tumors from T1-weighted MRI images. They preprocessed images and classified them using CNN. Their utilized dataset contains 3064 images of glioma, meningioma, and pituitary types of brain tumors. They were able to get a high accuracy score of 94.39%, a mean precision of 93.33%, and a mean recall of 93% using the CNN model. For the same purpose, Kaur et al. [5] proposed a deep learning-based approach for classifying brain cancers in which they preprocessed the original data, identified features using PCA and ICA, then smoothed using several optimization strategies, including firefly, cuckoo, lion, and bat optimization. Finally, for classification, Naive Bayes and Recurrent NN classifiers are utilized. The experiment was performed using MRI pictures, and the most excellent accuracy was 98.61%. A. S. Musallam et al. [6] proposed a three-step preprocessing approach to increase MRI image quality, as well as a unique DCNN design for reliably diagnosing gliomas, meningiomas, and pituitary tumors. They were 98.22% accurate overall. M. Rizwan et al. [7] propose using GCNN for two datasets. Both are used to distinguish between three kinds of brain tumors. For the two datasets, the proposed technique achieves 99.8% and 97.14% accuracy, respectively. An automatic brain tumor classification method is presented by Sharif et al. [8] using deep learning. The trials were performed on the BraTS 2018 and 2019 datasets with a 95% accuracy. Javeria et al. [9] created a novel model based on ensemble transfer learning and QVR for distinguishing between meningioma, glioma, pituitary, and no tumor. They achieved better than 90% detection accuracy. A deep learning and optimization algorithm-based system has been proposed by Usman et al. [10]. They utilized a pre-trained ResNet101 CNN architecture for feature extraction. They choose the best features using  PCA and particle swarm optimization. Then they classified the selected features using different machine learning algorithms and got 94.4% accuracy. The authors of [11] propose a CNN model where the augmentation strategy improves the accuracy performance of the model. The most outstanding accuracy for a pituitary tumor, according to their comparison of the accuracy to three datasets, is 98.43%. Pallavi et al. [12] used CNN to classify brain tumors. While classifying four types of brain tumors, their suggested model achieves 99% accuracy. Chetana et al. [13] compare the performance of CNN-trained transfer learning-based Inception-v3, ResNet-50, and VGG-16 models for predicting brain cancers. This study's dataset has just 233 images, which is a modest quantity for deep-learning models. Diagnostic methods for brain MRI imaging were carefully examined by Abd-Ellah et al. [14]. They also looked at the shortcomings and effectiveness measures of conventional ML and DL approaches. To successfully classify brain cancers from MR images, Hasnain et al. [15] suggested a fine-tuned DCNN EfficientNet-B0-based model. They used a variety of picture-enhancing methods. They achieved an overall accuracy of 98.87% in tumor identification and categorization. Kumar et al. [16] use a convolution neural network to categorize brain tumors based on two publicly available datasets that describe three unique tumor kinds and three glioma grades. Tumor classification accuracy was 86.23% in research I using the Adam optimizer and 81.6% in study II using the Sgdam optimizer. The writers of [17] offer a novel strategy for classifying various types of brain tumors. The Canny Mayfly segmentation algorithm is introduced. As per their ultimate evaluation results, their proposed approach outperformed with an accuracy of 98.85%. Despite the fact that the earlier tactics generated improved results, several issues persist. There are no more than four types of tumor detection procedures described above. However, this study classifies 15 different types of brain tumors.
+3	Methodology
+This section of the article describes how to employ high-boost filters and non-local means denoising algorithms in order to improve the high-frequency components and reduce noise in the data. This section also explains how the dataset was balanced and how several deep learning-based models were used to diagnose brain tumors. Figure 1 shows a graphic illustrating an abstract view of the procedures used in the suggested research approach. The process of gathering datasets, preprocessing, balancing data using augmentation and SMOTE, separating data, training models, analyzing results, and discussing the results is depicted in the picture. The subsections below provide thorough explanations of each stage.
+
+
+
+Fig. 1. Proposed approaches.
+3.1 	Dataset Collection 
+A dataset collected from Kaggle [18] was used in this article. The dataset contains 4479 MRI images which contain 15 classes. There are three types of brain MR imaging in each class. They are T1-weighted, T2-weighted, and T1C+ weighted. The class names and dataset class distribution are displayed in Figure 2. The dataset used in this paper is unbalanced. However, to train well deep learning models requires a balanced dataset because a balanced dataset eliminates bias against the majority class. This work completely addresses the dataset imbalance problem. Figure 3 shows the dataset's class names and accompanying MRI pictures.
+
+
+
+Fig. 2. Original dataset's class distribution.
+
+
+
+Fig. 3. Sample images from the dataset.
+3.2 	Data Preprocessing 
+This paper used a High-boost filter for image sharpening and Non-Local Means (NLM) denoising technique for noise removal. Both types are detailed below.
+3.2.1 	High-Boost filter 
+High-boost filtering is an image improvement technique that enhances the picture quality over the original image, particularly by sharpening it. The approach sharpens an object's edges on photographs by accentuating the image's high-frequency components while leaving out the low-frequency components. The underlying notion is straightforward. First, we use a filter to blur the input image. The blurred picture is then subtracted from the input image with the additional significance of A = 1. The following equation defines a High-boost filtered image.
+
+	fhbx,y= Afx,y-f'(x,y)	(1)
+
+In this case, fhbx,y represents the High-boost filtered picture, fx,y represents the input image, and f'(x,y) represents the blurred form of fx,y.
+3.2.2 	Non-Local Means Denoising 
+This article used the detail preserving Non-Local Means (NLM) Denoising technique to remove noise from the dataset [19]. The NLM denoising principle is to take the average intensity of neighboring pixels weighted by their similarity. This approach is independent of any imaging model and can be used as a post-processing method. The following equation can define the NLM filter:
+
+	NLup= 1C(p)fdBp,Bquqdq	(2)
+
+Here, C(p) is the normalizing factor, f is a decreasing function, and p and q-centered image patches Euclidean distance is denoted by dBp,Bq. Figure 4 shows the High-boost and NLM-applied image.
+
+
+Fig. 4. Image enhancement and noise elimination.
+3.3 	 Augmentation
+Most ML and DL model's success in any classification task is governed by the dataset's size, quality, and relevance. However, data scarcity exists in the medical industry due to a lack of patients for certain ailments, a lack of medical equipment, and some patients who do not want their data to be utilized. Data augmentation is an approach for artificially expanding the size of a dataset by creating modified or improved variations of the original data. Data augmentation's primary goal is to improve classification models' generalization and durability. It is often employed in computer vision, particularly medical imaging [20]. Table 1 lists the augmentation methods used in this work.
+
+Table 1. Augmentation methods.
+Sl. No.	Augmentation Method	Range	
+1	Fixed Rotation	90˚,180˚,270˚	
+2	Random Rotation	[-25˚,25˚]	
+3	Random Cropping	[1,15] pixels from all sides	
+4	Horizontal Flipping	Not applicable	
+5	Vertical Flipping	Not applicable	
+6	Scaling	[0.8, 0.95]	
+7	Translation	[-20,20] pixels from both axis	
+8	Combination of 3 and 2	[1,15] pixels and [-25˚,25˚]	
+9	Combination of 4 and 2	N/A and [-25˚,25˚]	
+10	Combination of 5 and 2	N/A and [-25˚,25˚]	
+11	Combination of 6 and 2	[0.8, 0.95] and [-25˚,25˚]	
+12	Combination of 7 and 2	[-20,20] pixels and [-25˚,25˚]	
+
+The number of picture data in each class is first computed. Then, calculate which category contains the highest number of photos. The difference between the values of each class's composed picture and the maximum value was computed. Following that, the required photos were created using the augmentation methods described above, which were applied randomly to the original photographs. Our dataset grew from 4479 to 13110 after applying this strategy to the original data. Figure 5 displays the dataset distribution after augmentation and balancing.
+3.4 	 SMOTE
+SMOTE is a common machine-learning strategy for dealing with the class imbalance problem in a dataset [21]. SMOTE is an approach for generating samples from the minority population. It is used to generate an intentionally or virtually class-balanced training dataset, which is then used to train the classifier. Because SMOTE is built on the KNN idea, it works well with both text and structured data. However, SMOTE applications have recently gained popularity in the computer vision field [22]-[25]. This approach also expanded the dataset size from 4479 to 13110, and Figure 5 illustrates the dataset distribution following SMOTE.
+
+
+
+Fig. 5. Balanced dataset's class distribution.
+3.5 	 Dataset Split
+Dataset separation is key for evaluating a model's performance and generalizability, simultaneously preventing overfitting and underfitting. This paper featured three dataset versions: the original dataset, the augmentation-applied balanced dataset, and the SMOTE-applied balanced dataset. All three datasets are split in an 80:20 ratio, with 80% utilized for training and 20% used to test the model.
+3.6 	 Deep Learning (DL) Models
+In a range of research domains, deep learning models have been used to categorize images. This work employs five cutting-edge deep-learning models that were pre-trained on the Imagenet dataset [26]. This section summarizes the models used in this research. This paper conduct research with ConvNext [27], ResNet50 [28], InceptionV3 [29], VGG19 [30], and EfficientNetB7 [31] deep learning architectures.
+3.7 	 Performance Metrics
+Evaluation metrics are essential to research since they allow us to evaluate a deep learning model's performance and generalization capacity. Depending on the problem, several evaluation metrics and methodologies are routinely used to evaluate deep learning models. In this paper, we have used accuracy, precision, recall, F1 score, Matthews correlation coefficient (MCC) [32], Hamming loss (HL) [33], Cohen's Kappa (CK) [34], and Jaccard score (JS) [35].
+4	Result Analysis and Performance Evaluation
+It is possible to understand whether the deep learning model is effectively trained by looking at the model's training and validation accuracy. The closer the training and validation accuracies are, the more generalized the model is. Similarly, training and validation loss gives the notion of the model's error while performing prediction on the training and validation data. The best-performing models (ResNet50) training and validation accuracy and loss curves are presented in Figures 6(a) and 6(b), respectively.
+
+
+Fig. 6. Accuracy and loss curves.
+
+The confusion matrix is another visual performance measure that provides a comprehensive assessment of a classification model's performance. It is a fundamental tool in the field of ML and DL. Figure 7 illustrates the confusion matrix of the best-performing model (ResNet50).
+
+
+
+Fig. 7. The confusion matrix.
+The accuracy, precision, recall, and f1-score are presented in Table 2. The table reveals that, without augmentation and SMOTE, the Convnext model gives better accuracy of 97.23%, recall of 95%, and f1-score of 95%. With augmentation, the Convnext model achieves promising accuracy, precision, recall, and an f1-score of 98.44%, 98%, 98%, and 98%, respectively. While applying SMOTE with the ResNet50 model, we got an excellent accuracy of 99.62%, precision of 100%, recall of 100%, and f1-score of 100%.
+
+Table 2. Values of accuracy, precision, recall, and F1-score.
+Applied Model	Dataset	Accuracy (%)	Precision (%)	Recall 
+(%)	F1-Score (%)	
+ConvNext	Original	97.23	96    	95   	95	
+	Augmented	98.44	98	98	98	
+	SMOTE applied	98.17	98	98	98	
+ResNet50	Original	96.45	97	93	95	
+	Augmented	96.30	96	96	96	
+	SMOTE applied	99.62	100	100	100	
+InceptionV3	Original	93.01	93	88	90	
+	Augmented	93.64	94	94	94	
+	SMOTE applied	95.16	95	95	95	
+VGG19	Original	90.79	92	87	89	
+	Augmented	92.38	93	92	92	
+	SMOTE applied	98.51	99	99	99	
+EfficientNetB7	Original	84.24	82	83	82	
+	Augmented	64.04	74	64	63	
+	SMOTE applied	98.40	98	98	98	
+
+Table 3. Values of HL, MCC, JS, and CK.
+Applied Model	Dataset	HL (%)	MCC (%)	JS (%)	CK (%)	
+ConvNext	Original	02.77	96.91	94.74	96.90	
+	Augmented	01.56	98.33	96.94	98.33	
+	SMOTE applied	01.83	98.05	96.44	98.04	
+ResNet50	Original	03.55	96.04	93.20	96.03	
+	Augmented	03.70	96.05	92.94	96.04	
+	SMOTE applied	00.38	99.59	99.25	99.59	
+InceptionV3	Original	06.99	92.20	87.03	92.17	
+	Augmented	06.36	93.20	88.10	93.18	
+	SMOTE applied	04.84	94.83	90.90	94.82	
+VGG19	Original	09.21	89.73	83.16	89.70	
+	Augmented	07.62	91.86	85.92	91.84	
+	SMOTE applied	01.49	98.41	97.14	98.41	
+EfficientNetB7	Original	15.76	82.72	73.11	82.51	
+	Augmented	35.96	62.15	46.56	61.47	
+	SMOTE applied	01.60	98.29	96.87	98.29	
+
+On the other hand, Table 3 displays HL, MCC, JS, and CK scores. The table shows that when the ResNet50 model was trained using the SMOTE applied dataset, it produced the lowest Hamming loss of 0.38%, implying that 0.38% percent of the classifications were inaccurate. MCC, JS, and CK obtained the highest results for the same dataset and model combination of 99.59%, 99.25%, and 99.59%, respectively. The MCC score of 99.59% indicates that the original and estimated classes are quite close. Furthermore, the values of JS and CK point to the same conclusion: the ResNet50 model is remarkably consistent in identifying brain tumors from MR imaging. 
+
+In summary, the results show that combining preprocessing with a High-boost filter and NLM, using SMOTE, and training with the ResNet50 model is a promising technique for detecting brain tumors from MRI images with an unbalanced dataset. However, it is important to note that further study is needed to validate these findings on larger datasets.
+5	Explanation using LIME
+Explainable AI is building and developing AI systems so humans can readily comprehend their decisions and actions. Deep learning models are highly complex, making it challenging for humans to comprehend how they arrive at specific conclusions or predictions. However, in a field like healthcare, lack of transparency may be a major source of concern. So, the capacity to explain AI decisions to establish confidence and guarantee safety is essential. The LIME technique is used in this research to provide model interpretability and explanations for individual predictions [36]. LIME is a well-known approach in the field of explainable AI. Figure 8 shows the images created by LIME.
+
+Figure 8(a) presents the original image from the test set. Figure 8(b) depicts the most relevant regions of interest (RoI) or super-pixels detected by LIME in order to anticipate the output. We can see that the model is properly identifying the correct region. The most important super-pixels with the background are presented in Figure 8(c). The highlighted regions illustrate how the model arrived at its conclusion. Figure 8(d) depicts the positive and negative correlations used to categorize the tumors. Green and red colors represent positive and negative correlations, respectively. The positive correlation implies that characteristics with higher significance ratings influence the model's predictions more. The negative correlation, on the other hand, suggests that variables with greater relevance ratings have a lower influence on the predictions. The heatmap produced by LIME is depicted in Figure 8(e). The following graphic also shows that the model uses tumor form, surrounding region, and location as features for categorization. As a result, we may infer that the model makes accurate predictions.
+
+
+
+Fig. 8. Generated images by LIME.
+6	Conclusion
+This research paper has successfully demonstrated the effectiveness and potentiality of recognizing BT from MR imaging using image processing and deep learning. Through the use of the SMOTE-based data balancing technique, the study has provided valuable insights into the capabilities of handling data imbalanced problems. The findings of this research highlight the advantages of image processing and SMOTE over other approaches. From the result analysis and discussion, this study concludes that the combination of image processing and SMOTE-based data balancing technique along with the ResNet50 model achieved excellent accuracy, precision, recall, and f1-score. The accuracy, precision, recall, and f1-score are 99.62%, 100%, 100%, and 100%, respectively. In the future experiment, a new model can be developed with more data to increase the efficiency of the result. 
+References 
+"Brain Tumor: Statistics | Cancer.Net." https://www.cancer.net/cancer-types/brain-tumor/statistics (accessed Jul. 20, 2023).
+Y. Yang et al., "Glioma grading on conventional MR images: a deep learning study with transfer learning," Front Neurosci, vol. 12, p. 804, 2018.
+M. Adel Fahmideh and M. E. Scheurer, "Pediatric brain tumors: descriptive epidemiology, risk factors, and future directions," Cancer Epidemiology, Biomarkers & Prevention, vol. 30, no. 5, pp. 813-821, 2021.
+S. Das, O. F. M. R. R. Aranya, and N. N. Labiba, "Brain tumor classification using convolutional neural network," in 2019 1st International Conference on Advances in Science, Engineering and Robotics Technology (ICASERT), 2019, pp. 1-5.
+D. Kaur et al., "Computational intelligence and metaheuristic techniques for brain tumor detection through IoMT-enabled MRI devices," Wirel Commun Mob Comput, vol. 2022, pp. 1-20, 2022.
+A. S. Musallam, A. S. Sherif, and M. K. Hussein, "A new convolutional neural network architecture for automatic detection of brain tumors in magnetic resonance imaging images," IEEE access, vol. 10, pp. 2775-2782, 2022.
+M. Rizwan, A. Shabbir, A. R. Javed, M. Shabbir, T. Baker, and D. A.-J. Obe, "Brain tumor and glioma grade classification using Gaussian convolutional neural network," IEEE Access, vol. 10, pp. 29731-29740, 2022.
+M. I. Sharif, M. A. Khan, M. Alhussein, K. Aurangzeb, and M. Raza, "A decision support system for multimodal brain tumor classification using deep learning," Complex & Intelligent Systems, pp. 1-14, 2021.
+J. Amin et al., "A new model for brain tumor detection using ensemble transfer learning and quantum variational classifier," Comput Intell Neurosci, vol. 2022, 2022.
+U. Zahid et al., "BrainNet: optimal deep learning feature fusion for brain tumor classification," Comput Intell Neurosci, vol. 2022, 2022.
+W. Ayadi, W. Elhamzi, I. Charfi, and M. Atri, "Deep CNN for brain tumor classification," Neural Process Lett, vol. 53, pp. 671-700, 2021.
+P. Tiwari et al., "Cnn based multiclass brain tumor detection using medical imaging," Comput Intell Neurosci, vol. 2022, 2022.
+C. Srinivas et al., "Deep transfer learning approaches in performance analysis of brain tumor classification using MRI images," J Healthc Eng, vol. 2022, 2022.
+M. K. Abd-Ellah, A. I. Awad, A. A. M. Khalaf, and H. F. A. Hamed, "A review on brain tumor diagnosis from MRI images: Practical implications, key achievements, and lessons learned," Magn Reson Imaging, vol. 61, pp. 300-318, 2019.
+H. A. Shah, F. Saeed, S. Yun, J.-H. Park, A. Paul, and J.-M. Kang, "A robust approach for brain tumor detection in magnetic resonance images using finetuned efficientnet," IEEE Access, vol. 10, pp. 65426-65438, 2022.
+S. Kumar and D. Kumar, "Human brain tumor classification and segmentation using CNN," Multimed Tools Appl, vol. 82, no. 5, pp. 7599-7620, 2023.
+S. Athisayamani, R. S. Antonyswamy, V. Sarveshwaran, M. Almeshari, Y. Alzamil, and V. Ravi, "Feature Extraction Using a Residual Deep Convolutional Neural Network (ResNet-152) and Optimized Feature Dimension Reduction for MRI Brain Tumor Classification," Diagnostics, vol. 13, no. 4, p. 668, 2023.
+Feltrin Fernando, "Brain Tumor MRI Images 44 Classes | Kaggle," Kaggle, Feb. 13, 2023. https://www.kaggle.com/datasets/fernando2rad/brain-tumor-mri-images-44c (accessed Jun. 14, 2023).
+A. Buades, B. Coll, and J.-M. Morel, "Non-local means denoising," Image Processing On Line, vol. 1, pp. 208-212, 2011.
+E. Goceri, "Medical image data augmentation: techniques, comparisons and interpretations," Artif Intell Rev, pp. 1-45, 2023.
+N. V Chawla, K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer, "SMOTE: synthetic minority over-sampling technique," Journal of artificial intelligence research, vol. 16, pp. 321-357, 2002.
+E. Chamseddine, N. Mansouri, M. Soui, and M. Abed, "Handling class imbalance in COVID-19 chest X-ray images classification: Using SMOTE and weighted loss," Appl Soft Comput, vol. 129, p. 109588, 2022.
+W. Feng, W. Huang, and W. Bao, "Imbalanced hyperspectral image classification with an adaptive ensemble method based on SMOTE and rotation forest with differentiated sampling rates," IEEE Geoscience and Remote Sensing Letters, vol. 16, no. 12, pp. 1879-1883, 2019.
+A. Özdemir, K. Polat, and A. Alhudhaif, "Classification of imbalanced hyperspectral images using SMOTE-based deep learning methods," Expert Syst Appl, vol. 178, p. 114986, 2021.
+D. Dablain, B. Krawczyk, and N. V Chawla, "DeepSMOTE: Fusing deep learning and SMOTE for imbalanced data," IEEE Trans Neural Netw Learn Syst, 2022.
+J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei, "Imagenet: A large-scale hierarchical image database," in 2009 IEEE conference on computer vision and pattern recognition, 2009, pp. 248-255.
+Z. Liu, H. Mao, C.-Y. Wu, C. Feichtenhofer, T. Darrell, and S. Xie, "A convnet for the 2020s," in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, 2022, pp. 11976-11986.
+K. He, X. Zhang, S. Ren, and J. Sun, "Deep residual learning for image recognition," in Proceedings of the IEEE conference on computer vision and pattern recognition, 2016, pp. 770-778.
+C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens, and Z. Wojna, "Rethinking the inception architecture for computer vision," in Proceedings of the IEEE conference on computer vision and pattern recognition, 2016, pp. 2818-2826.
+K. Simonyan and A. Zisserman, "Very deep convolutional networks for large-scale image recognition," arXiv preprint arXiv:1409.1556, 2014.
+M. Tan and Q. Le, "Efficientnet: Rethinking model scaling for convolutional neural networks," in International conference on machine learning, 2019, pp. 6105-6114.
+P. Baldi, S. Brunak, Y. Chauvin, C. A. F. Andersen, and H. Nielsen, "Assessing the accuracy of prediction algorithms for classification: an overview," Bioinformatics, vol. 16, no. 5, pp. 412-424, 2000.
+G. Tsoumakas and I. Katakis, "Multi-label classification: An overview," International Journal of Data Warehousing and Mining (IJDWM), vol. 3, no. 3, pp. 1-13, 2007.
+J. Cohen, "A coefficient of agreement for nominal scales," Educ Psychol Meas, vol. 20, no. 1, pp. 37-46, 1960.
+N. C. Chung, B. Miasojedow, M. Startek, and A. Gambin, "Jaccard/Tanimoto similarity test and estimation methods for biological presence-absence data," BMC Bioinformatics, vol. 20, no. 15, pp. 1-11, 2019.
+M. T. Ribeiro, S. Singh, and C. Guestrin, "' Why should i trust you?' Explaining the predictions of any classifier," in Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining, 2016, pp. 1135-1144.
+
+
+        </div><br/><br/>
+        <div>
+        <h3>Torture Phrases Word Counts:</h3>
+          <ul>
+            
+          </ul>
+        </div>
+      </body>
+    </html>
+  

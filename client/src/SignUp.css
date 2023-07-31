@@ -1,0 +1,34 @@
+/* SignUp.css */
+.sign-up-container {
+  max-width: 400px; 
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 20px; 
+  /* Add some styles for the form labels */
+  .form-label {
+    font-weight: bold;
+  }
+
+  /* Add some margin between form elements */
+  .form-group {
+    margin-bottom: 20px;
+    
+  }
+
+  /* Add some margin between form elements and the show password checkbox */
+  #formShowPassword {
+    margin-top: 10px;
+  }
+
+  /* Adjust the size of the submit button */
+  .btn-primary {
+    /* width: 80%; */
+    /* text-align: center; */
+  }
+
+  /* Add some additional styles to make the form look better on small screens */
+  @media (max-width: 576px) {
+    .sign-up-container {
+      padding: 10px; /* Reduce padding for small screens */
+    }
+  }
+}
